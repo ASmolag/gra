@@ -57,14 +57,38 @@ bool plansza::wiersz(int x, int y)
 		return false;
 }
 bool plansza::kolumna(int x, int y)
-{
-	return false;
+{	
+	int zlicz = 1;
+	for (int i = 1; (y - i) >= 0 && tab[x][y - i] == tab[x][y]; i++)
+		zlicz++;
+	for (int i = 1; (y + i) <= (rozmiar - 1) && tab[x][y + i] == tab[x][y]; i++)
+		zlicz++;
+	if (zlicz == ile_w_lini)
+		return true;
+	else
+		return false;
 }
 bool plansza::skos_prawy(int x, int y)
 {
-	return false;
+	int zlicz = 1;
+	for (int i = 1; (x - i) >= 0 && (y - i) >= 0 && tab[x - i][y - i] == tab[x][y]; i++)
+		zlicz++;
+	for (int i = 1; (x + i) <= (rozmiar - 1) && (y + i) <= (rozmiar - 1) && tab[x + i][y + i] == tab[x][y]; i++)
+		zlicz++;
+	if (zlicz == ile_w_lini)
+		return true;
+	else
+		return false;
 }
 bool plansza::skos_lewy(int x, int y)
 {
-	return false;
+	int zlicz = 1;
+	for (int i = 1; (x - i) >= 0 && (y + i) <= (rozmiar-1) && tab[x - i][y + i] == tab[x][y]; i++)
+		zlicz++;
+	for (int i = 1; (x + i) <= (rozmiar - 1) && (y - i) >= 0 && tab[x + i][y - i] == tab[x][y]; i++)
+		zlicz++;
+	if (zlicz == ile_w_lini)
+		return true;
+	else
+		return false;
 }
